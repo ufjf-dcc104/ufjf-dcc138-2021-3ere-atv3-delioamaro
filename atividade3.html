@@ -12,8 +12,17 @@
     <script>
         const canvas = document.querySelector("canvas");
         const ctx = canvas.getContext("2d");
+        const personagem = new Image();
+        personagem.src = "assets/personagem.png";
+        
+        personagem.addEventListener("load", terminouDeCarregar);
+        
         ctx.fillStyle = "gray";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        function terminouDeCarregar(){
+            ctx.drawImage(personagem, 0, 0, 71, 80, 0, 0, 71, 80);
+        }
     </script>
 </body>
 </html>
