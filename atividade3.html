@@ -17,11 +17,34 @@
         
         personagem.addEventListener("load", terminouDeCarregar);
         
-        ctx.fillStyle = "gray";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        function desenhaFundo(){
+            ctx.fillStyle = "gray";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        let pose = 0;
+        let quadro = 0;
+
+        const POSES = [4, 4 ,3 ,5]
 
         function terminouDeCarregar(){
-            ctx.drawImage(personagem, 0, 0, 71, 80, 0, 0, 71, 80);
+            
+        }
+
+        let t0;
+        let dt;
+
+        requestAnimationFrame(passo);
+        function passo(t){
+            t0 = t0 ?? t;
+            dt = (t - t0)/1000;
+            desenhaFundo();
+
+            quadro = (quadro >= POSES[pose]-1) ? 0 : quadro + 5 * dt;
+            
+            ctx.drawImage(personagem, Math.floor(quadro)*71, pose*80, 71, 80, 0, 0, 71, 80);
+            requestAnimationFrame(passo);
+            t0 = t;
         }
     </script>
 </body>
