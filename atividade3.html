@@ -25,11 +25,9 @@
         let pose = 0;
         let quadro = 0;
 
-        const POSES = [4, 4 ,3 ,5]
+        const POSES = [{qmax: 4, pv: 8}, {qmax: 4, pv: 3},{qmax: 3, pv: 8},{qmax: 5, pv: 4}];
 
-        function terminouDeCarregar(){
-            
-        }
+        function terminouDeCarregar(){}
 
         let t0;
         let dt;
@@ -40,7 +38,7 @@
             dt = (t - t0)/1000;
             desenhaFundo();
 
-            quadro = (quadro >= POSES[pose]-1) ? 0 : quadro + 5 * dt;
+            quadro = (quadro >= POSES[pose].qmax - 1) ? 0 : quadro + POSES[pose].pv* dt;
             
             ctx.drawImage(personagem, Math.floor(quadro)*71, pose*80, 71, 80, 0, 0, 71, 80);
             requestAnimationFrame(passo);
